@@ -1,9 +1,8 @@
-package UserInterface;
+package userInterface;
 
-import common.Users;
+import common.User;
+import service.ClientService;
 import utils.Utils;
-
-import java.util.Scanner;
 
 /**
  * @author lty
@@ -11,12 +10,15 @@ import java.util.Scanner;
 public class view {
     private boolean isLoop = true;
     private String input;
-    Users user = new Users();
+    private ClientService clientService = new ClientService();
+    private String userId;
+    private String pwd;
 
-    private void mainMenu(){
+    private void mainMenu() throws Exception {
         while(isLoop) {
             System.out.println("===============欢迎登录网络通信系统================");
-            System.out.println("\t \t 1.登录系统");
+            System.out.println("\t \t 1.用户注册");
+            System.out.println("\t \t 2.登录系统");
             System.out.println("\t \t 9.退出系统");
             System.out.println("================================================");
             System.out.print("请输入您想选择的功能（1或9）：");
@@ -25,11 +27,24 @@ public class view {
                 case "1":
                     // this.isLoop = false;
                     System.out.print("请输入用户名：");
-                    user.setUserId(Utils.readString(50));
+                    userId = Utils.readString(50);
                     System.out.print("请输入密码：");
-                    user.setPassWord(Utils.readString(50));
-                    if(true){
-                        System.out.println("===============欢迎（" + user.getUserId() + "）================");
+                    pwd = Utils.readString(50);
+                    if(clientService.checkUser(userId, pwd, "register")){
+                        System.out.println(userId + "注册成功！");
+                        System.out.println();
+                    } else {
+                        System.out.println("注册失败！用户名已存在。");
+                    }
+                    break;
+                case "2":
+                    // this.isLoop = false;
+                    System.out.print("请输入用户名：");
+                    userId = Utils.readString(50);
+                    System.out.print("请输入密码：");
+                    pwd = Utils.readString(50);
+                    if(clientService.checkUser(userId, pwd, "login")){
+                        System.out.println("===============欢迎（" + userId + "）================");
                         System.out.println();
                         this.secondMenu();
                     } else {
@@ -79,7 +94,7 @@ public class view {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         new view().mainMenu();
     }
 }

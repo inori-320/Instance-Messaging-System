@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author lty
  * 表示通讯时的消息对象
  */
-public class Messages implements Serializable {
+public class Message implements Serializable, MessageType {
     @Serial
     private static final long serialVersionUID =  1L;
     private String sender;

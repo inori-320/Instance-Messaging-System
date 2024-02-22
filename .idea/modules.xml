@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/InstantMessagingSystem.iml" filepath="$PROJECT_DIR$/.idea/InstantMessagingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MessageClient/MessageClient.iml" filepath="$PROJECT_DIR$/MessageClient/MessageClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MessageServer/MessageServer.iml" filepath="$PROJECT_DIR$/MessageServer/MessageServer.iml" />
+    </modules>
+  </component>
+</project>
