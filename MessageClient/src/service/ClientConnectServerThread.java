@@ -44,12 +44,14 @@ public class ClientConnectServerThread extends Thread{
                 } else if(type.equals(MessageType.MESSAGE_CHAT)){
                     System.out.println("\n用户" + message.getSender() + "对你说：" + message.getContent());
                 } else if(type.equals(MessageType.MESSAGE_GROUP)){
-                    System.out.println("\n用户" + message.getSender() + "对大家说：" + message.getContent());
+                    System.out.println("\n" + message.getSender() + "对大家说：" + message.getContent());
                 } else if(type.equals(MessageType.MESSAGE_FILE)){
                     try (FileOutputStream fileOutputStream = new FileOutputStream(message.getDest())) {
                         fileOutputStream.write(message.getFile());
                     }
-                    System.out.println("\n用户：" + message.getSender() + "给你发送了一个文件。文件已存放到：" + message.getDest());
+                    System.out.println("\n用户：" + message.getSender()
+                            + "给你发送了一个文件。文件已存放到："
+                            + message.getDest());
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);

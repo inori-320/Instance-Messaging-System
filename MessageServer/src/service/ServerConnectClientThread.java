@@ -47,18 +47,26 @@ public class ServerConnectClientThread extends Thread{
                     break;
                 } else if(type.equals(MessageType.MESSAGE_CHAT)){
                     // 根据message获取接收到用户的ID，得到对应的线程
-                    ServerConnectClientThread receiverThread = ServerDataBase.getClientThread(message.getReceiver());
+                    ServerConnectClientThread receiverThread =
+                            ServerDataBase.getClientThread(message.getReceiver());
                     // 得到对应socket的输出流，将message对象发送给指定的客户端
-                    new ObjectOutputStream(receiverThread.getSocket().getOutputStream()).writeObject(message);
+                    new ObjectOutputStream(
+                            receiverThread.getSocket().getOutputStream()
+                        ).writeObject(message);
                 } else if(type.equals(MessageType.MESSAGE_GROUP)){
                     String[] receiveUses = ServerDataBase.getOnlineUsers().split(" ");
                     for (String receiver : receiveUses) {
                         ServerConnectClientThread receiverThread = ServerDataBase.getClientThread(receiver);
-                        new ObjectOutputStream(receiverThread.getSocket().getOutputStream()).writeObject(message);
+                        new ObjectOutputStream(
+                                receiverThread.getSocket().getOutputStream()
+                            ).writeObject(message);
                     }
                 } else if(type.equals(MessageType.MESSAGE_FILE)){
-                    ServerConnectClientThread receiverThread = ServerDataBase.getClientThread(message.getReceiver());
-                    new ObjectOutputStream(receiverThread.getSocket().getOutputStream()).writeObject(message);
+                    ServerConnectClientThread receiverThread =
+                            ServerDataBase.getClientThread(message.getReceiver());
+                    new ObjectOutputStream(
+                            receiverThread.getSocket().getOutputStream()
+                        ).writeObject(message);
                 }
 
             } catch (Exception e) {

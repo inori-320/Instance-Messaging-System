@@ -20,6 +20,7 @@ public class ServerService {
         System.out.println("服务器在9999端口监听...");
         try {
             serverSocket = new ServerSocket(9999);
+            new Thread(new SendNews()).start();
             while(true){    // 当某个用户连接后，会继续侦听
                 Socket socket = serverSocket.accept();
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
@@ -38,7 +39,8 @@ public class ServerService {
                 } else {
                     if (ServerDataBase.getUser(user.getUserId(), user.getPassWord())) {
                         message.setMesType(MessageType.MESSAGE_LOGIN_SUCCEED);
-                        ServerConnectClientThread serverThread = new ServerConnectClientThread(socket, user.getUserId());
+                        ServerConnectClientThread serverThread =
+                                new ServerConnectClientThread(socket, user.getUserId());
                         serverThread.start();
                         ServerDataBase.addServerThread(user.getUserId(), serverThread);
                         ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
@@ -54,7 +56,7 @@ public class ServerService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
-            serverSocket.close();
+            if (serverSocket != null) serverSocket.close();
         }
     }
 

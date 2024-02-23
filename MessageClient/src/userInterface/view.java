@@ -25,7 +25,7 @@ public class view {
             System.out.println("\t \t 2.登录系统");
             System.out.println("\t \t 9.退出系统");
             System.out.println("================================================");
-            System.out.print("请输入您想选择的功能（1或9）：");
+            System.out.print("请输入您想选择的功能（1、2、9）：");
             input = Utils.readString(1);
             switch(input){
                 case "1":
@@ -74,7 +74,7 @@ public class view {
             System.out.println("\t \t 2.群发消息");
             System.out.println("\t \t 3.私聊消息");
             System.out.println("\t \t 4.发送文件");
-            System.out.println("\t \t 9.退出登录");
+            System.out.println("\t \t 9.退出系统");
             System.out.println("================================================");
             System.out.print("请输入您想选择的功能（1、2、3、4、9）：");
             input = Utils.readString(1);
