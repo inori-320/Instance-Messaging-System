@@ -1,8 +1,11 @@
 package userInterface;
 
 import common.User;
+import jdk.jshell.execution.Util;
 import service.ClientService;
 import utils.Utils;
+
+import java.util.Scanner;
 
 /**
  * @author lty
@@ -13,6 +16,7 @@ public class view {
     private ClientService clientService = new ClientService();
     private String userId;
     private String pwd;
+    private Scanner scanf = new Scanner(System.in);
 
     private void mainMenu() throws Exception {
         while(isLoop) {
@@ -62,7 +66,7 @@ public class view {
         }
     }
 
-    private void secondMenu(){
+    private void secondMenu() throws Exception {
         boolean isLoop_1 = true;
         while(isLoop_1) {
             System.out.println("================网络通信系统主界面=================");
@@ -76,15 +80,33 @@ public class view {
             input = Utils.readString(1);
             switch(input){
                 case "1":
+                    System.out.println("\n================在线用户列表=================");
+                    clientService.onlineUserList();
+                    scanf.nextLine();
                     break;
                 case "2":
+                    System.out.println("请输入你想发送的消息：");
+                    String content_group = Utils.readString(500);
+                    clientService.groupChat(userId, content_group);
                     break;
                 case "3":
+                    System.out.print("请输入想聊天的用户名（仅支持在线用户）：");
+                    String receiver = Utils.readString(50);
+                    System.out.println("请输入你想发送的消息：");
+                    String content = Utils.readString(300);
+                    clientService.userChat(userId, receiver, content);
                     break;
                 case "4":
+                    System.out.print("请输入想发送文件的用户号（仅支持在线用户）：");
+                    String recId = Utils.readString(50);
+                    System.out.println("请输入需要发送的文件的完整路径（比如D:\\xxx.jpg）：");
+                    String src = Utils.readString(500);
+                    System.out.println("请输入文件存储到对方的完整路径（比如E:\\xxx.jpg）：");
+                    String dist = Utils.readString(500);
+                    clientService.sendFile(userId, recId, src, dist);
                     break;
                 case "9":
-                    System.out.println("退出登录。");
+                    clientService.logout();
                     isLoop_1 = false;
                     break;
                 default:
@@ -92,6 +114,7 @@ public class view {
                     break;
             }
         }
+
     }
 
     public static void main(String[] args) throws Exception {

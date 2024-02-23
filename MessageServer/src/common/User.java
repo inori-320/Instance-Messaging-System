@@ -11,13 +11,13 @@ public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private String userId;
-    private String passWord;
+    private String passwd;
 
     public User() {}
 
-    public User(String userId, String passWord) {
+    public User(String userId, String passwd) {
         this.userId = userId;
-        this.passWord = passWord;
+        this.passwd = passwd;
     }
 
     public String getUserId() {
@@ -29,10 +29,11 @@ public class User implements Serializable {
     }
 
     public String getPassWord() {
-        return passWord;
+        return passwd;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassWord(String passwd) {
+        this.passwd = passwd;
     }
+
 }

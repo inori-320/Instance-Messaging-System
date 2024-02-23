@@ -23,10 +23,10 @@ public class ServerService {
             while(true){    // 当某个用户连接后，会继续侦听
                 Socket socket = serverSocket.accept();
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-                Message init = (Message) input.readObject();
+                String content = (String) input.readObject();
                 User user = (User) input.readObject();
                 Message message = new Message();
-                if(init.getContent().equals("register")){
+                if(content.equals("register")){
                     if(ServerDataBase.checkUser(user.getUserId(), user.getPassWord())){
                         message.setMesType(MessageType.MESSAGE_REGISTER_SUCCEED);
                     } else {

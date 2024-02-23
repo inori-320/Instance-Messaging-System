@@ -15,6 +15,11 @@ public class Message implements Serializable, MessageType {
     private String content;
     private String time;
     private String mesType;
+    //文件相关参数
+    private byte[] file;
+    private int fileLen;
+    private String dest;
+    private String src;
 
     public String getMesType() {
         return mesType;
@@ -54,5 +59,37 @@ public class Message implements Serializable, MessageType {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public int getFileLen() {
+        return fileLen;
+    }
+
+    public void setFileLen(int fileLen) {
+        this.fileLen = fileLen;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public void setDest(String dest) {
+        this.dest = dest;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
     }
 }
